@@ -1,0 +1,554 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+//Built-in styles
+
+* {
+    font-size: $reg-fz;
+    color: $mainGray;
+}
+
+.container {
+    box-sizing: border-box;
+    padding: 0 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    $footerHeight: 160px;
+    display: grid;
+    grid-template-rows: auto 1fr $footerHeight;
+    min-height: calc(100dvh + $footerHeight);
+}
+
+body {
+    background-color: $white;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-size: $reg-fz;
+}
+
+input,
+textarea {
+    padding: 0;
+    margin: 0;
+    min-height: 30px;
+    border: none;
+    outline: none;
+    color: $mainGray;
+    font-size: $reg-fz;
+}
+
+.textarea {
+    resize: none;
+    min-height: 250px !important;
+    color: $mainGray;
+}
+
+h1 {
+    font-size: $h1-fz;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: $h2-fz;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: $h3-fz;
+    font-weight: 600;
+}
+
+b,
+strong {
+    font-weight: 600;
+}
+
+i {
+    font-style: italic;
+}
+
+ul {
+    padding-left: 40px; /* Добавьте отступ слева */
+    list-style: disc;
+}
+
+/* Стили для нумерованных списков */
+ol {
+    list-style-type: round; /* Замените на любой другой тип нумерации */
+    padding-left: 40px; /* Добавьте отступ слева */
+}
+
+a {
+    color: $lightViolet;
+    font-weight: 500;
+
+    * {
+        color: $lightViolet;
+    }
+
+    @include hover {
+        text-decoration: underline;
+    }
+}
+
+//Common style classes
+
+.button-base {
+    border-radius: 5px;
+    height: 50px;
+    background-color: $white;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    > * {
+        transition: inherit;
+    }
+}
+
+.button-round {
+    @extend .button-base;
+    border-radius: 100px;
+}
+
+.button-white-tp {
+    @extend .button-base;
+    background-color: rgba($white, 0.3);
+    color: $white;
+    outline: solid 4px transparent;
+
+    transition: 0.3s ease-in-out;
+
+    @include hover {
+        background-color: $white;
+        color: $mainGray;
+        outline: solid 4px rgba($white, 0.3);
+    }
+}
+
+.button-violet {
+    @extend .button-base;
+    background-color: $lightViolet;
+    color: $white;
+    outline: solid 4px transparent;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        background-color: $mainViolet;
+        outline: solid 4px rgba($lightViolet, 0.4);
+    }
+}
+
+.button-violet-light {
+    @extend .button-base;
+    background-color: $veryLightViolet;
+    color: $lightViolet;
+
+    transition: 0.4s ease-in-out;
+
+    &-selected {
+        background-color: $lightViolet;
+        color: $white;
+    }
+
+    @include hover {
+        background-color: $lightViolet;
+        color: $white;
+    }
+}
+
+.button-violet-outline {
+    @extend .button-base;
+    background-color: white;
+    border: solid 2px $lightViolet;
+    color: $lightViolet;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        background-color: $lightViolet;
+        color: $white;
+    }
+}
+
+.button-danger {
+    @extend .button-base;
+    background-color: $lightRed;
+    color: $white;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        background-color: $red;
+    }
+}
+
+.button-danger-light {
+    @extend .button-base;
+    background-color: $veryLightRed;
+    color: $lightRed;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        background-color: $lightRed;
+        color: $white;
+    }
+}
+
+.button-gray {
+    @extend .button-base;
+    background-color: $veryLightGray;
+    color: $mainGray;
+    border: solid 2px transparent;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        background-color: $white;
+        border: solid 2px $lightGray;
+    }
+}
+
+.button-gray-violet {
+    @extend .button-base;
+    background-color: $veryLightGray;
+    border: solid 2px transparent;
+    transition: 0.3s ease-in-out;
+    padding: 10px;
+    height: max-content;
+
+    @include hover {
+        border-color: $lightViolet;
+        background-color: $veryLightViolet;
+        color: $lightViolet;
+
+        > * {
+            color: $lightViolet;
+        }
+    }
+}
+
+.button-white-red {
+    @extend .button-base;
+    color: $red;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        color: $white;
+        background-color: $red;
+    }
+}
+
+.button-white-green {
+    @extend .button-base;
+    color: $green;
+
+    transition: 0.4s ease-in-out;
+
+    @include hover {
+        color: $white;
+        background-color: $green;
+    }
+}
+
+.button-violet-light-rounded {
+    @extend .button-violet-light;
+    @extend .button-round;
+}
+
+.button-red-light-rounded {
+    @extend .button-danger-light;
+    @extend .button-round;
+}
+
+.button-violet-rounded {
+    @extend .button-violet;
+    @extend .button-round;
+}
+
+.button-violet-outline-rounded {
+    @extend.button-violet-outline;
+    @extend.button-round;
+}
+
+.inputs-base {
+    border-radius: 5px;
+    background: $veryLightGray;
+    padding: 10px;
+    min-height: 50px;
+    text-overflow: ellipsis;
+
+    &::placeholder {
+        color: $secondaryGray;
+    }
+}
+
+.input-transparent {
+    @extend .inputs-base;
+    background-color: transparent;
+}
+
+.input-gray {
+    @extend .inputs-base;
+}
+
+.input-danger {
+    @extend.inputs-base;
+    $ml: 3px;
+    background-color: $white;
+    color: $red;
+    border: solid 2px $red;
+
+    animation: shake 0.2s;
+
+    &::placeholder {
+        color: $red;
+    }
+
+    @keyframes shake {
+        0% {
+            transform: translateX($ml);
+        }
+
+        25% {
+            transform: translateX($ml * (-1));
+        }
+
+        50% {
+            transform: translateX($ml);
+        }
+
+        100% {
+            transform: translateX($ml * (-1));
+        }
+    }
+}
+
+.input-line {
+    @extend .inputs-base;
+    background-color: transparent;
+    font-size: $reg-fz;
+}
+
+.outlined-input {
+    @extend .inputs-base;
+    background-color: $white;
+    border: solid 2px $veryLightGray;
+    transition: 0.3s ease-in-out;
+
+    &::placeholder {
+        transition: 0.3s ease-in-out;
+    }
+
+    &:focus {
+        border: solid 2px $lightViolet;
+        color: $lightViolet;
+
+        &::placeholder {
+            color: rgba($lightViolet, 0.6);
+        }
+    }
+}
+
+.outlined-input-line {
+    @extend .inputs-base;
+    background-color: transparent;
+    border-bottom: solid 2px $veryLightGray;
+    border-radius: 0;
+    transition: 0.3s ease-in-out;
+
+    &::placeholder {
+        transition: 0.3s ease-in-out;
+    }
+
+    @include hover {
+        background-color: rgba($veryLightGray, 0.7);
+    }
+
+    &:focus {
+        background-color: $veryLightViolet;
+        color: $lightViolet;
+        border-bottom-color: $lightViolet;
+
+        &::placeholder {
+            color: rgba($lightViolet, 0.5);
+        }
+    }
+}
+
+.outlined-input-danger {
+    @extend .outlined-input-line;
+    border-bottom: solid 2px $lighterRed;
+    &::placeholder {
+        color: $lighterRed;
+    }
+    @include hover {
+        background-color: rgba($veryLightRed, 0.4);
+    }
+    &:focus {
+        background-color: $veryLightRed;
+        color: $lightRed;
+        border-bottom-color: $lightRed;
+        &::placeholder {
+            color: $lighterRed;
+        }
+    }
+}
+
+.ui-title {
+    font-size: $h3-fz;
+    font-weight: 500;
+}
+
+.ui-text {
+    color: $mainGray;
+    line-height: 1.5;
+    font-size: $reg-fz;
+    font-weight: 400;
+}
+
+.medium-text {
+    @extend .ui-text;
+    font-weight: 500;
+}
+
+.big-text {
+    @extend .ui-text;
+    font-size: $big-fz;
+    font-weight: 500;
+}
+
+.big-text-regular {
+    @extend .ui-text;
+    font-size: $big-fz;
+    font-weight: 400;
+}
+
+.text-danger {
+    @extend .ui-text;
+    color: $red;
+}
+
+.error-text {
+    @extend .text-danger;
+    $ml: 3px;
+    animation: shake 0.2s;
+    margin: 3px;
+
+    @keyframes shake {
+        0% {
+            transform: translateX($ml);
+        }
+
+        25% {
+            transform: translateX($ml * (-1));
+        }
+
+        50% {
+            transform: translateX($ml);
+        }
+
+        100% {
+            transform: translateX($ml * (-1));
+        }
+    }
+}
+
+.text-violet {
+    @extend.ui-text;
+    color: $lightViolet;
+}
+
+.linked-text {
+    color: $mainViolet;
+    cursor: pointer;
+
+    @include hover {
+        text-decoration: underline;
+    }
+}
+
+.required {
+    color: $red;
+
+    &:before {
+        content: "* ";
+    }
+}
+
+.icon-large-size {
+    font-size: 40px;
+}
+
+.icon-big-size {
+    font-size: 32px;
+}
+
+.icon-medium-size {
+    font-size: 24px;
+}
+
+.icon-normal-size {
+    font-size: 20px;
+}
+
+.line-start-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.line-distributed-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.line-end-container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.indented {
+    @include child-not-last {
+        margin-bottom: 40px;
+    }
+}
+
+.disabled {
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.violet-selection {
+    background-color: $veryLightViolet;
+    color: $lightViolet;
+    padding: 0 5px;
+}
+
+.optional-text {
+    @extend .ui-text;
+    color: $secondaryGray;
+}
