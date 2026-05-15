@@ -1,5 +1,5 @@
 import { Course } from "../../models/course";
-import { useHistoryNavigation } from "../../hooks/historyNavigation";
+import { useHistoryNavigation } from "../../../hooks/historyNavigation";
 import CourseItem from "./CourseItem";
 import { paths } from "../../models/paths";
 

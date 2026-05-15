@@ -1,22 +1,23 @@
 import { useState } from 'react'
-import Breadcrumb from './components/Breadcrumb/Breadcrumb'
-import BreadcrumbItem from './components/Breadcrumb/BreadcrumbItem'
-import HorizontalStackLayout from './components/HorizontalStackLayout/HorizontalStackLayout'
+import VerticalStackLayout from './components/views/VerticalStackLayout/VerticalStackLayout'
+import { Margin } from './components/model/Margin'
+import { Padding } from './components/model/Padding'
+import Spacing from './components/model/Spacing'
 
 function App() {
 
   return (
     <>
-     <HorizontalStackLayout
-        margin={"10"}
-        padding={"10"}
-        spacing={20}
+     <VerticalStackLayout
+        margin={new Margin(40)}
+        padding={new Padding(40)}
+        spacing={new Spacing(20)}
      >
+        <p>Google</p>
         <p>Hello world!</p>
         <p>Hello world!</p>
         <p>Hello world!</p>
-        <p>Hello world!</p>
-     </HorizontalStackLayout>
+     </VerticalStackLayout>
     </>
   )
 }
